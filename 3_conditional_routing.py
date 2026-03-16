@@ -46,7 +46,7 @@ def call_llm_structured(system_prompt: str, user_text: str, response_model: Base
     
     # 2. Make the real API call
     response = client.models.generate_content(
-        model='gemini-2.5-flash', # Fast, cheap model perfect for rapid routing
+        model='gemini-3-flash-overview', # Fast, cheap model perfect for rapid routing
         contents=user_text,
         config={
             "system_instruction": system_prompt,

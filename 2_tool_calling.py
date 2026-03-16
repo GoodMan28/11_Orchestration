@@ -35,7 +35,7 @@ if __name__ == "__main__":
     # We use the 'chats' module because it automatically handles the execution loop
     print("Initializing Agent...")
     chat = client.chats.create(
-        model="gemini-2.5-flash", 
+        model="gemini-3-flash-preview", 
         config={
             # We simply pass our raw Python functions in a list!
             "tools": [get_weather, get_stock_price] 
