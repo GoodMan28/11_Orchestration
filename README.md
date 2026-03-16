@@ -75,3 +75,45 @@ graph TD
     style Generator fill:#bbf,stroke:#333,stroke-width:2px
     style Critic fill:#bbf,stroke:#333,stroke-width:2px
 ```
+
+## Parallel Orchestration (Async Pattern)
+
+This pattern performs multiple independent LLM calls concurrently to gather diverse perspectives or perform broad research efficiently.
+
+### File: [5_loop_orchestration_async.py](file:///c:/Users/Abhineet%20Anand/Desktop/Projects/AI%20Engineering%20Roadmap/1_AI%20Application%20Development/1_Orchestration/5_loop_orchestration_async.py)
+
+**Question:** How can we perform multiple independent research tasks concurrently to speed up the orchestration process?
+
+The following graph illustrates the parallel async flow:
+
+```mermaid
+graph TD
+    Start([Start Research]) --> Parallel[Parallel Execution: asyncio.gather]
+    
+    subgraph "Async Worker Nodes"
+    Parallel --> Worker1[Worker: Economist Perspective]
+    Parallel --> Worker2[Worker: Trend Analyst Perspective]
+    Parallel --> Worker3[Worker: Regulatory Expert Perspective]
+    end
+    
+    Worker1 --> Aggregator[Aggregate Perspectives]
+    Worker2 --> Aggregator
+    Worker3 --> Aggregator
+    
+    Aggregator --> Synthesis[LLM: Final Synthesis Node]
+    Synthesis --> End([Final Executive Summary])
+    
+    style Parallel fill:#f9f,stroke:#333,stroke-width:2px
+    style Worker1 fill:#bbf,stroke:#333,stroke-width:2px
+    style Worker2 fill:#bbf,stroke:#333,stroke-width:2px
+    style Worker3 fill:#bbf,stroke:#333,stroke-width:2px
+    style Synthesis fill:#bbf,stroke:#333,stroke-width:2px
+```
+
+### Key Concepts
+
+- **Async Worker Nodes**: Individual worker functions that perform LLM calls using `client.aio`.
+- **Concurrency**: Uses `asyncio.gather` to launch multiple tasks simultaneously rather than sequentially.
+- **Aggregation & Synthesis**: Collects all completed responses and routes them to a final synthesis node for a unified output.
+- **Performance**: Dramatically reduces total execution time for complex research tasks with independent branches.
+
